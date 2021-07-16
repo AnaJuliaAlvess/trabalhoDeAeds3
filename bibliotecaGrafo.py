@@ -23,7 +23,7 @@ def representacao(arquivo, vertices, arestas, opcao):
     return -1
 
 
-def informacoes(listaad, arestas, vertices):
+def informacoes_listaAdjacencia(listaad, arestas, vertices):
    cont=0;
    maior=0;
    menor=0;
@@ -57,6 +57,39 @@ def informacoes(listaad, arestas, vertices):
    print(f"Grau {menor} :  {contMenor/vertices}")
    print(f"Grau {maior} :  {contMaior / vertices}")
 
+def informacoesMatrizAdjacencia(matriz, arestas, vertices):
+    cont = 0;
+    maior = 0;
+    menor = 0;
+    maiorVertice = -1
+    menorVertice = -1
+    grau = []
+    for i in range(vertices):
+        cont= 5 - matriz[i].count(0)
+        grau.append(cont)
+        if cont > maior:
+            maior = cont
+            maiorVertice = i
+        if cont < maior:
+            if menorVertice < cont:
+                menor = cont
+                menorVertice = i
+
+    grauMedio = (arestas * 2) / vertices
+    contMaior = 0
+    contMenor = 0
+    for i in range(len(grau)):
+        if grau[i] == maior:
+            contMaior = contMaior + 1
+        if grau[i] == menor:
+            contMenor = contMenor + 1
+    print(grau)
+    print(f"Maior grau: {maior} - vertice:  {maiorVertice}")
+    print(f"Menor grau: {menor} - vertice:  {menorVertice}")
+    print(f"Grau Médio: {grauMedio}")
+    print("Frequecia Relativa:")
+    print(f"Grau {menor} :  {contMenor / vertices}")
+    print(f"Grau {maior} :  {contMaior / vertices}")
 
 def busca_largura(G, s):
     desc = [0 for i in range(len(G))]
@@ -88,4 +121,5 @@ aresta=int(linhaInt[1])
 op = int(input ("Digite 1 para representar o grafo como lista de adjacencia  ou 2  para representar como matriz de adjacência:"))
 rep= representacao(manipulador,vertice,aresta,op)
 print(rep)
-informacoes(rep, aresta, vertice)
+#reinformacoes_listaAdjacencia(rep, aresta, vertice)
+informacoesMatrizAdjacencia(rep,aresta,vertice)
