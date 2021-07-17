@@ -113,7 +113,32 @@ def busca_largura_lista(G, s):
     for i in range(len(G)):
         if (nivel[i] != []):
             print(f"{i}:{nivel[i]}")
-    return R
+    #return R
+
+def busca_largura_matriz(G, s):
+    desc = [0 for i in range(len(G))]
+    nivel = [ [] for i in range(len(G))]
+    Q = [s]
+    R = [s]
+    desc[s] = 1
+    nivel[s] = 0
+    while len(Q) != 0:
+        u = Q.pop(0)
+        for i in range (len(G[u])):
+            if G[u][i] != 0  and desc[i]== 0:
+                    Q.append(i)
+                    R.append(i)
+                    desc[i]= 1
+                    nivel[i]= nivel[u] + 1
+
+    print("Busca largura: ")
+    print("#vertice:nivel")
+    for i in range(len(G)):
+        if nivel[i] != []:
+            print(f"{i}:{nivel[i]}")
+
+    #return R
+
 
 nome_arquivo = input("Digite o nome do arquivo com a sua extensão:")
 manipulador= open(nome_arquivo, "r") # colocar uma mensagem de erro se nao abrir o arquivo
@@ -127,5 +152,6 @@ print(rep)
 #verificar como fazer essa escolha pq depende do usuario
 #informacoes_listaAdjacencia(rep, aresta, vertice)
 #informacoesMatrizAdjacencia(rep,aresta,vertice)
-busca_largura_lista(rep,0)
+#busca_largura_lista(rep,0)
+busca_largura_matriz(rep,0)
 
