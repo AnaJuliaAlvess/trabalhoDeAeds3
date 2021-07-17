@@ -91,25 +91,28 @@ def informacoesMatrizAdjacencia(matriz, arestas, vertices):
     print(f"Grau {menor} :  {contMenor / vertices}")
     print(f"Grau {maior} :  {contMaior / vertices}")
 
-def busca_largura(G, s):
+def busca_largura_lista(G, s):
     desc = [0 for i in range(len(G))]
-    nivel = [-1 for i in range(len(G))]
+    nivel = [ [] for i in range(len(G))]
     Q = [s]
     R = [s]
     desc[s] = 1
     nivel[s] = 0
     while len(Q) != 0:
         u = Q.pop(0)
-        for v in G[u]:
+        for e in G[u]:
+            v= e[0]
             if desc[v] == 0:
                 Q.append(v)
                 R.append(v)
                 desc[v] = 1
                 nivel[v] = nivel[u] + 1
-    nivel_filtrado = list(filter(lambda x: x>-1, nivel))
+    #nivel_filtrado = list(filter(lambda x: x>-1, nivel))
+    print("Busca largura: ")
     print("#vertice:nivel")
-    for i in range(len(R)):
-        print(f"{R[i]}:{nivel_filtrado[i]}")
+    for i in range(len(G)):
+        if (nivel[i] != []):
+            print(f"{i}:{nivel[i]}")
     return R
 
 nome_arquivo = input("Digite o nome do arquivo com a sua extensão:")
@@ -121,5 +124,8 @@ aresta=int(linhaInt[1])
 op = int(input ("Digite 1 para representar o grafo como lista de adjacencia  ou 2  para representar como matriz de adjacência:"))
 rep= representacao(manipulador,vertice,aresta,op)
 print(rep)
-#reinformacoes_listaAdjacencia(rep, aresta, vertice)
-informacoesMatrizAdjacencia(rep,aresta,vertice)
+#verificar como fazer essa escolha pq depende do usuario
+#informacoes_listaAdjacencia(rep, aresta, vertice)
+#informacoesMatrizAdjacencia(rep,aresta,vertice)
+busca_largura_lista(rep,0)
+
