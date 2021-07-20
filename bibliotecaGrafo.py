@@ -164,6 +164,7 @@ def buscaProfundidadeLista(G,s):
                 break
         if desempilhar:
             S.pop()
+
     print("-" * 30)
     print("Busca por profundidade:")
     print("#vertice:nivel")
@@ -199,7 +200,7 @@ def buscaProfundidadeMatriz(G,s):
         if (nivel[i] != []):
             print ("{}:{}".format(i, nivel[i]))
     print("-"*30)
-    return R
+    #return R
 
 def buscaProfundidadeListaConexa(G, s, marca):
     desc = [0 for i in range(len(G))]
@@ -237,23 +238,5 @@ def componentesConexasLista(G):
     for i in range(1,n+1):
         print("{} vertices".format(vComp.count(i)))
 
-nome_arquivo = input("Digite o nome do arquivo com a sua extensão:")
-manipulador = open(nome_arquivo, "r")  # colocar uma mensagem de erro se nao abrir o arquivo
-linha = manipulador.readline()  # pega a linha de aresta e vertice
-linhaInt = list(map(int, (linha.split(' '))))
-vertice = int(linhaInt[0])
-aresta = int(linhaInt[1])
-op = int(input(
-    "Digite 1 para representar o grafo como lista de adjacencia  ou 2  para representar como matriz de adjacência:"))
-rep = representacao(manipulador, vertice, aresta, op)
-print(rep)
-# verificar como fazer essa escolha pq depende do usuario
-#informacoesListaAdjacencia(rep,aresta,vertice)
-informacoesMatrizAdjacencia(rep,aresta,vertice)
-#buscaLarguralista(rep,0)
-#buscaLarguraMatriz(rep,0)
-#buscaProfundidadeLista(rep,0)
-#buscaProfundidadeMatriz(rep,0)
-componentesConexasLista(rep)
 
 
