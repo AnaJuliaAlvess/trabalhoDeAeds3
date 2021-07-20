@@ -18,7 +18,7 @@ def representacao(arquivo, vertices, arestas, opcao):
     return -1
 
 def informacoesListaAdjacencia(listaad, arestas, vertices):
-    cont = 0
+    #cont = 0
     maior = 0
     menor = 0
     maiorVertice = -1
@@ -54,14 +54,14 @@ def informacoesListaAdjacencia(listaad, arestas, vertices):
     print("-" * 30)
 
 def informacoesMatrizAdjacencia(matriz, arestas, vertices):
-    cont = 0
+    # cont = 0
     maior = 0
     menor = 0
     maiorVertice = -1
     menorVertice = -1
     grau = []
     for i in range(vertices):
-        cont = 5 - matriz[i].count(0)
+        cont = vertices - matriz[i].count(0)
         grau.append(cont)
         if cont > maior:
             maior = cont
@@ -237,6 +237,42 @@ def componentesConexasLista(G):
     n = max(vComp)
     for i in range(1,n+1):
         print("{} vertices".format(vComp.count(i)))
+
+def buscaProfundidadeConexaMatriz(G, s, marca):
+    desc = [0 for i in range(len(G))]
+    S = [s]
+    R = [s]
+    desc[s] = 1
+    vComp[s]=marca
+    while len(S) != 0:
+        u = S[-1]
+        desempilhar = True
+        for i in range(len(G[u])):
+            if G[u][i] != 0 and desc[i] == 0:
+                desempilhar = False
+                S.append(i)
+                R.append(i)
+                desc[i] = 1
+                break
+        vComp[u]=marca
+        if desempilhar:
+            S.pop()
+
+def componentesConexasMatriz(G):
+    global vComp
+    vComp = [0 for i in range(len(G))]
+    marca = 0
+    for i in range(len(G)):
+        if vComp[i] == 0:
+            marca= marca + 1
+            buscaProfundidadeConexaMatriz(G,i,marca)
+
+
+    print("Componentes Conexas:{}".format(marca))
+    n = max(vComp)
+    for i in range(1,n+1):
+        print("{} vertices".format(vComp.count(i)))
+
 
 
 
