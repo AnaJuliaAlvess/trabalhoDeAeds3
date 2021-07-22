@@ -1,4 +1,4 @@
-def representacao(arquivo, vertices, arestas, opcao):
+'''def representacao(arquivo, vertices, arestas, opcao):
     listaAd = [[] for i in range(vertices)]  # cria lista
     matrizAd = [[0 for i in range(vertices)] for i in range(vertices)]  # cria matriz
     for i in range(arestas):
@@ -15,8 +15,31 @@ def representacao(arquivo, vertices, arestas, opcao):
         return listaAd
     if opcao == 2:
         return matrizAd
-    return -1
+    return -1'''
+def representacao_lista(arquivo,vertices,arestas):
+    listaAd = [[] for i in range(vertices)]  # cria lista
+    for i in range(arestas):
+        l = arquivo.readline()
+        lInt = list(map(int, (l.split(' '))))
+        origem = int(lInt[0])
+        destino = int(lInt[1])
+        peso = int(lInt[2])
+        listaAd[origem].append((destino, peso))
+        listaAd[destino].append((origem, peso))
 
+    return listaAd
+def representacao_matriz(arquivo,vertices,arestas):
+    matrizAd = [[0 for i in range(vertices)] for i in range(vertices)]  # cria matriz
+    for i in range(arestas):
+        l = arquivo.readline()
+        lInt = list(map(int, (l.split(' '))))
+        origem = int(lInt[0])
+        destino = int(lInt[1])
+        peso = int(lInt[2])
+        matrizAd[origem][destino] = peso
+        matrizAd[destino][origem] = peso
+
+    return matrizAd
 def informacoesListaAdjacencia(listaad, arestas, vertices):
     #cont = 0
     maior = 0
@@ -232,6 +255,7 @@ def componentesConexasLista(G):
         if vComp[i] == 0:
             marca= marca + 1
             buscaProfundidadeListaConexa(G, i, marca)
+
 
     print("Componentes Conexas:{}".format(marca))
     n = max(vComp)
