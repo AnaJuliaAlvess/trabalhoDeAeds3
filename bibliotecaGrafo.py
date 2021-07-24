@@ -1,9 +1,9 @@
-'''def representacao(arquivo, vertices, arestas, opcao):
+def representacao(arquivo, vertices, arestas, opcao):
     listaAd = [[] for i in range(vertices)]  # cria lista
     matrizAd = [[0 for i in range(vertices)] for i in range(vertices)]  # cria matriz
     for i in range(arestas):
         l = arquivo.readline()
-        lInt = list(map(int, (l.split(' '))))
+        lInt =l.split(' ')
         origem = int(lInt[0])
         destino = int(lInt[1])
         peso = int(lInt[2])
@@ -15,7 +15,8 @@
         return listaAd
     if opcao == 2:
         return matrizAd
-    return -1'''
+
+    return -1
 def representacao_lista(arquivo,vertices,arestas):
     listaAd = [[] for i in range(vertices)]  # cria lista
     for i in range(arestas):
@@ -28,6 +29,7 @@ def representacao_lista(arquivo,vertices,arestas):
         listaAd[destino].append((origem, peso))
 
     return listaAd
+
 def representacao_matriz(arquivo,vertices,arestas):
     matrizAd = [[0 for i in range(vertices)] for i in range(vertices)]  # cria matriz
     for i in range(arestas):
@@ -41,7 +43,6 @@ def representacao_matriz(arquivo,vertices,arestas):
 
     return matrizAd
 def informacoesListaAdjacencia(listaad, arestas, vertices):
-    #cont = 0
     maior = 0
     menor = 0
     maiorVertice = -1
@@ -77,7 +78,6 @@ def informacoesListaAdjacencia(listaad, arestas, vertices):
     print("-" * 30)
 
 def informacoesMatrizAdjacencia(matriz, arestas, vertices):
-    # cont = 0
     maior = 0
     menor = 0
     maiorVertice = -1
@@ -138,7 +138,7 @@ def buscaLarguralista(G, s):
             print("{}:{}".format(i, nivel[i]))
     print("-" * 30)
 
-    # return R
+    return R
 
 
 def buscaLarguraMatriz(G, s):
@@ -164,7 +164,7 @@ def buscaLarguraMatriz(G, s):
             print("{}:{}".format(i, nivel[i]))
     print("-" * 30)
 
-    # return R
+    return R
 
 def buscaProfundidadeLista(G,s):
     desc = [0 for i in range(len(G))]
