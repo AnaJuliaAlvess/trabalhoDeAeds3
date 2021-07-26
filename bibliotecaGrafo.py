@@ -129,16 +129,19 @@ def buscaLarguralista(G, s):
                 R.append(v)
                 desc[v] = 1
                 nivel[v] = nivel[u] + 1
-    # nivel_filtrado = list(filter(lambda x: x>-1, nivel))
-    print("-"*30)
-    print("Busca largura: ")
-    print("#vertice:nivel")
-    for i in range(len(G)):
-        if (nivel[i] != []):
-            print("{}:{}".format(i, nivel[i]))
-    print("-" * 30)
 
-    return R
+    contNivel=0
+    #print("-"*30)
+    #print("Busca largura: ")
+    #print("#vertice:nivel")
+    for i in range(len(G)):
+        if nivel[i] != []:
+            #print("{}:{}".format(i, nivel[i]))
+            if nivel [i] > contNivel:
+                contNivel=nivel[i]
+
+    #print("-" * 30)
+    return contNivel
 
 
 def buscaLarguraMatriz(G, s):
